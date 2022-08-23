@@ -25,7 +25,7 @@ function createPDF(info){
     openDoc.saveAndClose();
 
     const blobPDF = newTempFile.getAs(MimeType.PDF);
-    const pdfFile = pdfFolder.createFile(blobPDF).setName(info['First Name'][0] + " " + info['Last Name'][0]);
+    const pdfFile = pdfFolder.createFile(blobPDF).setName(info['First Name'][0] + " " + info['Last Name'][0] + " " + new Date());
     tempFolder.removeFile(newTempFile);
 
 }
