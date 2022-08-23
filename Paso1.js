@@ -18,10 +18,10 @@ function createPDF(){
 
     const openDoc = DocumentApp.openById(newTempFile.getId()); // Abre el el doc y agrega la información al cuerpo.
     const body = openDoc.getBody();
-    body.replaceText("fn", info['First Name'][0]); // Este dato debe coincidir con la constante info
-    body.replaceText("ln", info['Last Name'][0]); // Este dato debe coincidir con la constante info
-    body.replaceText("qty", info['Quantity'][0]); // Este dato debe coincidir con la constante info
-    body.replaceText("addr", info['Address'][0]); // Este dato debe coincidir con la constante info
+    body.replaceText("{fn}", info['First Name'][0]); // Este dato debe coincidir con la constante info
+    body.replaceText("{ln}", info['Last Name'][0]); // Este dato debe coincidir con la constante info
+    body.replaceText("{qty}", info['Quantity'][0]); // Este dato debe coincidir con la constante info
+    body.replaceText("{addr}", info['Address'][0]); // Este dato debe coincidir con la constante info
     openDoc.saveAndClose();
 
     const blobPDF = newTempFile.getAs(MimeType.PDF);
