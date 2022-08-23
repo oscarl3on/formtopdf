@@ -2,6 +2,13 @@
 
 function createPDF(){
 
+    const info = {
+        'First Name':['Jane'],
+        'Last Name':['Doe'],
+        'Quantity':['12'],
+        'Address':['Guatemala'],
+    }
+
     //Se declaran las variables para manipular el Drive
     const pdfFolder = DriveApp.getFolderById("1Hx2uyKM5vOswhsdJeCYYuJcwjl5JJTGH"); // Agregar el ID del URL
     const tempFolder = DriveApp.getFolderById("1AOiNVaVydND5CfIZLcMPtH_JyyjEIpCe"); // Agregar el ID del URL
