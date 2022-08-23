@@ -1,13 +1,13 @@
-//Este es el código con el cual se inicializan las variables para convetir los PDF
+//En esta parte del código se debe agregar el evento activador.
 
-function createPDF(){
+function afterFormSubmit(e){
 
-    const info = {
-        'First Name':['Jane'],
-        'Last Name':['Doe'],
-        'Quantity':['12'],
-        'Address':['Guatemala']
-    };
+    const info = e.namedValues;
+    createPDF(info);
+
+}
+
+function createPDF(info){
 
     //Se declaran las variables para manipular el Drive
     const pdfFolder = DriveApp.getFolderById("1Hx2uyKM5vOswhsdJeCYYuJcwjl5JJTGH"); // Agregar el ID del URL
@@ -25,7 +25,8 @@ function createPDF(){
     openDoc.saveAndClose();
 
     const blobPDF = newTempFile.getAs(MimeType.PDF);
-    const pdfFile = pdfFolder.createFile(blobPDF).setName("My PDF");
+    const pdfFile = pdfFolder.createFile(blobPDF).setName(info['First Name'][0] + " " + info['Last Name'][0]);
+    tempFolder.removeFile(newTempFile);
 
 }
 
