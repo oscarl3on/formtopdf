@@ -1,4 +1,4 @@
-//En esta parte del código se debe agregar el evento activador.
+//En esta parte del código se debe agregar el evento activador, IMPORTANTE, debe seleccionar el evento a activar
 
 function afterFormSubmit(e){
 
@@ -30,4 +30,4 @@ function createPDF(info){
 
 }
 
-//Correr la funcion createPDF y seguir el Paso2
+//Correr la funcion createPDF y seguir el Paso3
