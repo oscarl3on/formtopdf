@@ -1,10 +1,25 @@
 //Se crea el codigo para enviar por correo el PDF.
+//Crear otra hoja en el Google Sheet, para colocar los links
+//Agregar la formula =ARRAYFORMULA('Respuestas de formulario 1'!A2:E)
+//Ejecutar la funcion enviar EMAIL
 
 function afterFormSubmit(e){
 
     const info = e.namedValues;
-    createPDF(info);
+    const pdfFile = createPDF(info);
+    const entryRow = e.range.getRow();
+    const ws = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("People");
+    ws.getRange(entryRow, 6).setValue(pdfFile.getUrl());
+    ws.getRange(entryRow, 7).setValue(pdfFile.getName());
 
+    sendEmail(e.namedValues['email'][0],pdfFile);
+}
+
+function sendEmail(email,pdfFile){
+    GmailApp.sendEmail(email,"Este es el oficio que has creado","Descargue el adjunto",{
+        attachments: [pdfFile],
+        name: 'Registro de Comercializadores'
+    });
 }
 
 function createPDF(info){
@@ -27,7 +42,8 @@ function createPDF(info){
     const blobPDF = newTempFile.getAs(MimeType.PDF);
     const pdfFile = pdfFolder.createFile(blobPDF).setName(info['First Name'][0] + " " + info['Last Name'][0] + " " + new Date());
     tempFolder.removeFile(newTempFile);
+    return pdfFile;
 
 }
 
-//Correr la funcion createPDF y seguir el Paso3
+//Correr la funcion createPDF y seguir el Paso
