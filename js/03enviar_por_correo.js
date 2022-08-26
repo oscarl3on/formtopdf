@@ -46,4 +46,3 @@ function createPDF(info){
 
 }
 
-//Correr la funcion createPDF y seguir el Paso
